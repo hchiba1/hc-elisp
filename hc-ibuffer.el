@@ -1,0 +1,203 @@
+(global-set-key [\C-tab] 'ibuffer)
+(global-set-key [\C-\M-tab] 'buffer-menu)
+
+(require 'ibuffer)
+(defadvice ibuffer
+  (before hoge activate)
+  (right-side-window 30))
+(defadvice ibuffer
+  (after hoge activate)
+  (beginning-of-buffer)
+  (ibuffer-forward-line)
+;;   (Buffer-menu-grep-v "Dired by")
+  (isearch-resume "^\\s-+..\\s-+[^< ]*" t nil t "^ .. [^< ]*" t)
+  )
+
+(define-key ibuffer-mode-map "\C-n" 'ibuffer-forward-line)
+(define-key ibuffer-mode-map "\C-p" 'ibuffer-backward-line)
+(define-key ibuffer-mode-map "n" '(lambda()(interactive) (ibuffer-forward-line)(ibuffer-visit-buffer-other-window-noselect)))
+(define-key ibuffer-mode-map "p" '(lambda()(interactive) (ibuffer-backward-line)(ibuffer-visit-buffer-other-window-noselect)))
+;; (define-key ibuffer-mode-map "\C-m" 'ibuffer-visit-buffer-1-window)a
+(define-key ibuffer-mode-map "\C-m" '(lambda()(interactive) (ibuffer-visit-buffer-other-window-noselect)(kill-bufwin)))
+(define-key ibuffer-mode-map "\C-v" 'ibuffer-visit-buffer-other-window-noselect)
+;; (define-key ibuffer-mode-map "\C-g" '(lambda()(interactive) (beginning-of-buffer)(next-line 2)(ibuffer-visit-buffer-other-window-noselect)(kill-bufwin)))
+;; (define-key ibuffer-mode-map "\C-g" 'kill-bufwin)
+(define-key ibuffer-mode-map "\C-g" '(lambda()(interactive) (ibuffer-visit-buffer-other-window-noselect)(kill-bufwin)))
+(define-key ibuffer-mode-map "\C-o" nil)
+(define-key ibuffer-mode-map "c" 'ibuffer-category)
+(define-key ibuffer-mode-map [tab] 'ibuffer-category)
+;; (define-key ibuffer-mode-map [\C-tab] 'ibuffer-visit-buffer-1-window)
+;; (define-key ibuffer-mode-map [\C-tab] '(lambda()(interactive) (ibuffer-visit-buffer-other-window-noselect)(kill-bufwin)))
+(define-key ibuffer-mode-map [\C-tab] 'kill-bufwin)
+;; (define-key ibuffer-mode-map [\C-\M-tab] '(lambda()(interactive) (ibuffer-visit-buffer-other-window-noselect)(kill-bufwin)(buffer-menu)))
+(define-key ibuffer-mode-map [\C-\M-tab] '(lambda()(interactive) (kill-bufwin)(buffer-menu)))
+
+
+
+
+;Align outputs
+(setq ibuffer-formats
+      '((mark modified read-only " " (name 30 30)
+              " " (size 6 -1) " " (mode 16 16) " " filename)
+        (mark " " (name 30 -1) " " filename)))
+;Hide special buffers
+(setq ibuffer-never-show-regexps '("\*.*\*"))
+
+;Grep buffers
+(defun Buffer-menu-grep (str)
+  (interactive "sregexp:")
+  (save-excursion
+    (ibuffer-update nil)
+    (goto-char (point-min))
+    (let (lines)
+      (forward-line 2)
+      (setq lines (buffer-substring (point-min) (point)))
+      (while (re-search-forward str nil t)
+	(let ((bol (progn (beginning-of-line) (point)))
+	      (eol (progn (forward-line) (point))))
+	  (setq lines (concat lines (buffer-substring bol eol)))))
+      (let ((buffer-read-only nil))
+	(erase-buffer)
+	(insert lines))))
+  (forward-line 2))
+(defun Buffer-menu-grep-v (str)
+  (interactive "sregexp:")
+  (save-excursion
+    (ibuffer-update nil)
+    (goto-char (point-min))
+    (let (lines beg)
+      (setq beg (point))
+      (while (re-search-forward str nil t)
+	(beginning-of-line)
+	(setq lines (concat lines (buffer-substring beg (point))))
+	(forward-line 1)
+	(setq beg (point)))
+      (setq lines (concat lines (buffer-substring beg (point-max))))
+      (let ((buffer-read-only nil))
+	(erase-buffer)
+	(insert lines))))
+  (forward-line 2))
+(defun Buffer-menu-grep-delete (str)
+  (interactive "sregexp:")
+  (save-excursion
+    (goto-char (point-min))
+    (forward-line 2)
+    (while (re-search-forward str nil t)
+      (save-excursion
+        (ibuffer-mark-for-delete nil)
+        )
+      (end-of-line))))
+
+;; (defun Buffer-menu-grep-match (str)
+;;   (interactive "P")
+;;   (call-interactively 'ibuffer)
+;;   (save-excursion
+;;     (goto-char (point-min))
+;;     (let (lines)
+;;       (forward-line 2)
+;;       (setq lines (buffer-substring (point-min) (point)))
+;;       (while (re-search-forward str nil t)
+;;         (let ((bol (progn (beginning-of-line) (point)))
+;;               (eol (progn (forward-line) (point))))
+;;           (setq lines (concat lines (buffer-substring bol eol)))))
+;;       (let ((buffer-read-only nil))
+;;         (erase-buffer)
+;;         (insert lines)))))
+;; (defun Buffer-menu-grep-reject (str)
+;;   (interactive "P")
+;;   (call-interactively 'ibuffer)
+;;   (save-excursion
+;;     (goto-char (point-min))
+;;     (let (lines)
+;;       (forward-line 2)
+;;       (setq lines (buffer-substring (point-min) (point)))
+;;       (forward-line 1)
+;;       (while (re-search-forward ".+$" (line-end-position) t)
+;;         (let ((bol (progn (beginning-of-line) (point)))
+;;               (eol (progn (forward-line) (point))))
+;;           (if (not (string-match str (buffer-substring bol eol)))
+;;               (setq lines (concat lines (buffer-substring bol eol))))))
+;;       (let ((buffer-read-only nil))
+;;         (erase-buffer)
+;;         (insert lines)))))
+
+
+;; (defun Buffer-menu-grep-texi () (Buffer-menu-grep-match "texi"))
+;; (defun Buffer-menu-grep-el () (interactive)(Buffer-menu-grep "\\(scratch\\|\\.el\\)"))
+;; (defun Buffer-menu-grep-2ch () (Buffer-menu-grep-match "navi2ch"))
+;; (defun Buffer-menu-grep-default () (Buffer-menu-grep-reject "\\(texi\\|navi2ch\\)"))
+;; (defvar my-buffer-menu-list '(
+;;                               ("\.texi" . Buffer-menu-grep-texi)
+;;                               ("navi2ch" . Buffer-menu-grep-2ch)
+;;                               ("\.el" . Buffer-menu-grep-el)
+;;                               ("." . Buffer-menu-grep-default)
+;;                               ))
+;; (defun my-buffer-menu (arg)
+;;   (interactive "P")
+;;   (if arg
+;;       ;;(call-interactively 'buffer-menu)
+;;         (call-interactively 'ibuffer)
+;;     (let ((alist my-buffer-menu-list)
+;;           (case-fold-search t)
+;;           (buffer-menu-com nil)
+;;           (name (buffer-name (current-buffer))))
+;;       (while (and (not buffer-menu-com) alist)
+;;         (if (string-match (car (car alist)) name)
+;;             (setq buffer-menu-com (cdr (car alist))))
+;;         (setq alist (cdr alist)))
+;;       (if buffer-menu-com
+;;           (funcall buffer-menu-com)
+;;         (call-interactively 'ibuffer)))))
+
+;; (defun Buffer-menu-grep-ext ()
+;;   (let ((str (format "%s" (read-minibuffer "regexp: "))))
+;;     (Buffer-menu-grep str)))
+
+(defun ibuffer-category ()
+  (interactive)
+  (message "Filter: (d)irectory, (f)ile, d(o)cs, (l)isp, (s)hell-script | (r)egexp, (R)egexp-delete")
+  (let ((c (downcase (char-to-string (read-char)))))
+    (cond
+     ((string-match "r" c)
+      (Buffer-menu-grep (format "%s" (read-minibuffer "regexp: "))))
+     ((string-match "R" c)
+      (Buffer-menu-grep-delete))
+     ((string-match "l" c)
+      (Buffer-menu-grep "Emacs-lisp"))
+     ((string-match "f" c)
+      (Buffer-menu-grep-v "Dired by"))
+     ((string-match "d" c)
+      (Buffer-menu-grep "Dired by"))
+     ((string-match "o" c)
+      (Buffer-menu-grep "<docs>"))
+     ((string-match "s" c)
+      (Buffer-menu-grep "Shell-script"))
+     (t
+      (ibuffer-category)))))
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+;Buffer-menu-mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
+(defadvice buffer-menu
+  (before hoge activate)
+  (right-side-window 35))
+(defadvice buffer-menu
+  (after hoge activate)
+  (isearch-resume "^...\\s-+[^< ]*" t nil t "^ .. [^< ]*" t)
+  )
+(define-key Buffer-menu-mode-map "\C-n" 'next-line)
+(define-key Buffer-menu-mode-map "\C-p" 'previous-line)
+(define-key Buffer-menu-mode-map "n" '(lambda()(interactive) (next-line 1)(Buffer-menu-switch-other-window)))
+(define-key Buffer-menu-mode-map "p" '(lambda()(interactive) (previous-line 1)(Buffer-menu-switch-other-window)))
+(define-key Buffer-menu-mode-map "\C-m" '(lambda()(interactive) (Buffer-menu-this-window)(delete-other-windows)))
+;; (define-key Buffer-menu-mode-map "\C-g" 'kill-bufwin)
+(define-key Buffer-menu-mode-map "\C-g" '(lambda()(interactive) (Buffer-menu-this-window)(delete-other-windows)))
+(define-key Buffer-menu-mode-map "\C-\M-g" '(lambda()(interactive) (beginning-of-buffer)(next-line 2)(Buffer-menu-switch-other-window)(kill-bufwin)))
+(define-key Buffer-menu-mode-map "\C-o" nil)
+;; (define-key Buffer-menu-mode-map [\C-\M-tab] '(lambda()(interactive) (Buffer-menu-this-window)(delete-other-windows)))
+(define-key Buffer-menu-mode-map [\C-\M-tab] 'kill-bufwin)
+;; (define-key Buffer-menu-mode-map [\C-tab] '(lambda()(interactive) (Buffer-menu-this-window)(delete-other-windows)))
+(define-key Buffer-menu-mode-map [\C-tab] 'kill-bufwin)
