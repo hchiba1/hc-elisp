@@ -45,9 +45,4 @@
 ;; Other settings
 (load "hc-other-settings")
 (load "hc-test-functions")
-
-;; (load "mycalculator")
-
-(if window-system
-    (load "~/etc/lisp/.emacs.linux.el")
-  (load "~/etc/lisp/.emacs.cygwin.el"))
+(load "~/etc/lisp/.emacs.linux.el")
