@@ -41,10 +41,6 @@
 ;; (display-time) ;show
 ;; (which-function-mode t)
 ;; (column-number-mode t) ;show
-;;; Set the modeline to show the file path, total lines, and hostname
-;; (setq-default mode-line-buffer-identification
-;; 	      '(buffer-file-name ("%f") ("%b")) ;; file path or buffer name
-;; 	      )
 (setq-default mode-line-format
               (list "%e"
                     'mode-line-front-space
@@ -55,55 +51,32 @@
                     'mode-line-frame-identification
                     'mode-line-buffer-identification ;; filename
                     " %l:%c"
-
-                    ;; "   "
-                    ;; '(:eval (format "%d" (count-lines (point-max) (point-min)))) ;; total lines
-
-                    ;; " "
-                    ;; 'mode-line-position ; pos% (line,column)
-                    
+                    ;; 'mode-line-position ;; pos% (line,column)
                     "  "
                     'mode-line-modes ; major and minor modes in effect
                     `(vc-mode vc-mode) ; if vc-mode is in effect, display version control info here
-                    ;; "line: %l /"
                     "  "
-                    '(:eval (format "%d" (count-lines (point-max) (point-min)))) ;; total lines
+                    '(:eval (format "%d" (count-lines (point-max) (point-min)))) ;; TOTAL LINES
                     " lines"
                     "  %P"
-
                     ;; '(which-func-mode ("" which-func-format "--")) ; if which-func-mode is in effect, display which function we are currently in.
-
                     ;; 'mode-line-misc-info
-                    ;; "    @"
                     ;; 'system-name ;; hostname
-
                     ;; "-%-" ; dashes sufficient to fill rest of modeline.
                     mode-line-end-spaces
-                    )
-              )
-
-;; Set the header to show the host name, file path, and total lines.
+                    ))
+;; (setq-default mode-line-buffer-identification
+;; 	      '(buffer-file-name ("%f") ("%b")) ;; file path or buffer name
+;; 	      )
 (setq-default header-line-format
-              ;; '((:eval system-name) ": %f %* line: %l /" (:eval (format "%d" (count-lines (point-max) (point-min)))) "  (read %P)   col: %c" )
-              ;; '((:eval system-name) ": %f %* line: %l /" (:eval (format "%d" (count-lines (point-max) (point-min)))) " (read %P)" )
               '(
-                ;; "["(:eval system-name)"]"                  ; host name
-                ""(:eval system-name)":"                  ; host name
-                ;; ": "
-                ;; " %* "
+                ""(:eval system-name)""                   ;; HOST NAME
+                ;; " %* "                                 ;; file status (e.g. read-only)
                 ;; "%b %f"
-                " %f"
+                ": %f"                                    ;; FILE PATH
                 ;; (:eval (if (buffer-file-name) " (%f)")) ; file path
                 ;; (:eval (if (buffer-file-name) "%f" "%b")) ; file path or buffer name
-                ;; " %* line: %l /"
-                ;; (:eval (format "%d" (count-lines (point-max) (point-min)))) ; total lines
-                ;; " (read %P)"
-                ;; " %* "
-                ;; "  total"
-                ;; "  " (:eval (format "%d" (count-lines (point-max) (point-min)))) " lines" ; total lines
-                ;; "  %P"
-                )
-              )
+                ))
 
 ;; hide "Encoded-kbd" in the mode line
 (let ((elem (assq 'encoded-kbd-mode minor-mode-alist)))
