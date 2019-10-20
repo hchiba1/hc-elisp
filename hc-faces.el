@@ -50,11 +50,11 @@
                     'mode-line-remote
                     'mode-line-frame-identification
                     'mode-line-buffer-identification ;; filename
-                    " %l:%c"
                     ;; 'mode-line-position ;; pos% (line,column)
                     "  "
                     'mode-line-modes ; major and minor modes in effect
                     `(vc-mode vc-mode) ; if vc-mode is in effect, display version control info here
+                    "  %l:%c"
                     "  "
                     '(:eval (format "%d" (count-lines (point-max) (point-min)))) ;; TOTAL LINES
                     " lines"
