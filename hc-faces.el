@@ -46,63 +46,64 @@
 ;; 	      '(buffer-file-name ("%f") ("%b")) ;; file path or buffer name
 ;; 	      )
 (setq-default mode-line-format
-  (list "%e"
-	'mode-line-front-space
-	'mode-line-mule-info
-	'mode-line-client
-        'mode-line-modified ; */% indicators if the file has been modified
-	'mode-line-remote
-	'mode-line-frame-identification
-    'mode-line-buffer-identification ;; filename
+              (list "%e"
+                    'mode-line-front-space
+                    'mode-line-mule-info
+                    'mode-line-client
+                    'mode-line-modified ; */% indicators if the file has been modified
+                    'mode-line-remote
+                    'mode-line-frame-identification
+                    'mode-line-buffer-identification ;; filename
+                    " %l:%c"
 
-        ;; "   "
-	;; '(:eval (format "%d" (count-lines (point-max) (point-min)))) ;; total lines
+                    ;; "   "
+                    ;; '(:eval (format "%d" (count-lines (point-max) (point-min)))) ;; total lines
 
-	;; " "
-        ;; 'mode-line-position ; pos% (line,column)
-	
-        "  "
-        'mode-line-modes ; major and minor modes in effect
-	`(vc-mode vc-mode) ; if vc-mode is in effect, display version control info here
-	;; "line: %l /"
-	"  "
-	'(:eval (format "%d" (count-lines (point-max) (point-min)))) ;; total lines
-	" lines"
-	"  %P"
+                    ;; " "
+                    ;; 'mode-line-position ; pos% (line,column)
+                    
+                    "  "
+                    'mode-line-modes ; major and minor modes in effect
+                    `(vc-mode vc-mode) ; if vc-mode is in effect, display version control info here
+                    ;; "line: %l /"
+                    "  "
+                    '(:eval (format "%d" (count-lines (point-max) (point-min)))) ;; total lines
+                    " lines"
+                    "  %P"
 
-        ;; '(which-func-mode ("" which-func-format "--")) ; if which-func-mode is in effect, display which function we are currently in.
+                    ;; '(which-func-mode ("" which-func-format "--")) ; if which-func-mode is in effect, display which function we are currently in.
 
-	;; 'mode-line-misc-info
-        ;; "    @"
-        ;; 'system-name ;; hostname
+                    ;; 'mode-line-misc-info
+                    ;; "    @"
+                    ;; 'system-name ;; hostname
 
-        ;; "-%-" ; dashes sufficient to fill rest of modeline.
-	mode-line-end-spaces
-        )
-  )
+                    ;; "-%-" ; dashes sufficient to fill rest of modeline.
+                    mode-line-end-spaces
+                    )
+              )
 
 ;; Set the header to show the host name, file path, and total lines.
 (setq-default header-line-format
-	      ;; '((:eval system-name) ": %f %* line: %l /" (:eval (format "%d" (count-lines (point-max) (point-min)))) "  (read %P)   col: %c" )
-	      ;; '((:eval system-name) ": %f %* line: %l /" (:eval (format "%d" (count-lines (point-max) (point-min)))) " (read %P)" )
-	      '(
-		;; "["(:eval system-name)"]"                  ; host name
-		""(:eval system-name)":"                  ; host name
-		;; ": "
-		;; " %* "
-		;; "%b %f"
-		" %f"
-		;; (:eval (if (buffer-file-name) " (%f)")) ; file path
-		;; (:eval (if (buffer-file-name) "%f" "%b")) ; file path or buffer name
-		;; " %* line: %l /"
-		;; (:eval (format "%d" (count-lines (point-max) (point-min)))) ; total lines
-		;; " (read %P)"
-		;; " %* "
-		;; "  total"
-		;; "  " (:eval (format "%d" (count-lines (point-max) (point-min)))) " lines" ; total lines
-		;; "  %P"
-		)
-	      )
+              ;; '((:eval system-name) ": %f %* line: %l /" (:eval (format "%d" (count-lines (point-max) (point-min)))) "  (read %P)   col: %c" )
+              ;; '((:eval system-name) ": %f %* line: %l /" (:eval (format "%d" (count-lines (point-max) (point-min)))) " (read %P)" )
+              '(
+                ;; "["(:eval system-name)"]"                  ; host name
+                ""(:eval system-name)":"                  ; host name
+                ;; ": "
+                ;; " %* "
+                ;; "%b %f"
+                " %f"
+                ;; (:eval (if (buffer-file-name) " (%f)")) ; file path
+                ;; (:eval (if (buffer-file-name) "%f" "%b")) ; file path or buffer name
+                ;; " %* line: %l /"
+                ;; (:eval (format "%d" (count-lines (point-max) (point-min)))) ; total lines
+                ;; " (read %P)"
+                ;; " %* "
+                ;; "  total"
+                ;; "  " (:eval (format "%d" (count-lines (point-max) (point-min)))) " lines" ; total lines
+                ;; "  %P"
+                )
+              )
 
 ;; hide "Encoded-kbd" in the mode line
 (let ((elem (assq 'encoded-kbd-mode minor-mode-alist)))
@@ -112,17 +113,17 @@
 ;; hide "Isearch" in the mode line
 (add-hook 'isearch-mode-hook
           '(lambda ()
-	     (setcar (cdr (assq 'isearch-mode minor-mode-alist)) "")
-	     ))
+             (setcar (cdr (assq 'isearch-mode minor-mode-alist)) "")
+             ))
 
 
 
 ;;; minibuffer ;;;
-;resize minibuffer to appropreate size
-;(resize-minibuffer-mode 1)
-;turn off keybind hints
+                                        ;resize minibuffer to appropreate size
+                                        ;(resize-minibuffer-mode 1)
+                                        ;turn off keybind hints
 (setq suggest-key-bindings nil)
-;open window such as *HELP* in appropreate size
+                                        ;open window such as *HELP* in appropreate size
 (temp-buffer-resize-mode 1)
 
 
@@ -159,7 +160,7 @@
 ;; (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
 ;; (ad-activate 'font-lock-mode)
 
-;high-lighten yanked strings
+                                        ;high-lighten yanked strings
 ;; (when (or window-system (eq emacs-major-version '21))
 ;;   (defadvice yank (after ys:highlight-string activate)
 ;;     (let ((ol (make-overlay (mark t) (point))))
