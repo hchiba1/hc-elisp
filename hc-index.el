@@ -45,4 +45,4 @@
 ;; Other settings
 (load "hc-other-settings")
 (load "hc-test-functions")
-(load "~/etc/lisp/.emacs.linux.el")
+(load ".emacs.linux.el")
