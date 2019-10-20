@@ -10,9 +10,6 @@
             ;; (set-scroll-bar-mode nil) ;; 'right or 'left or 'nil ; it takes almost 0.5 sec! (why?)
             ))
 
-(setq-default truncate-lines t)
-;; (setq-default truncate-partial-width-windows t)
-
 ;;; Dinamic coloring ;;;
 (global-font-lock-mode t)
 
@@ -29,6 +26,9 @@
                     :foreground "#777")
 ;; (custom-set-faces
 ;;  '(fringe ((t (:background "#333")))))
+
+(setq-default truncate-lines t)
+;; (setq-default truncate-partial-width-windows t)
 
 ;;; Mode line ;;;
 (set-face-foreground 'mode-line "#bbbed7") ; mode-line for emacs24
