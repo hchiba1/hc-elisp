@@ -70,10 +70,12 @@
 ;; 	      )
 (setq-default header-line-format
               '(
+                "%f"                                    ;; FILE PATH
+                " %* "                                 ;; file status (e.g. read-only)
                 ""(:eval system-name)""                   ;; HOST NAME
                 ;; " %* "                                 ;; file status (e.g. read-only)
+                ;; ": %f"                                    ;; FILE PATH
                 ;; "%b %f"
-                ": %f"                                    ;; FILE PATH
                 ;; (:eval (if (buffer-file-name) " (%f)")) ; file path
                 ;; (:eval (if (buffer-file-name) "%f" "%b")) ; file path or buffer name
                 ))
