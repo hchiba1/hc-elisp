@@ -58,7 +58,7 @@
                     "  "
                     '(:eval (format "%d" (count-lines (point-max) (point-min)))) ;; TOTAL LINES
                     " lines"
-                    "  %P"
+                    ;; "  (%P)"
                     ;; '(which-func-mode ("" which-func-format "--")) ; if which-func-mode is in effect, display which function we are currently in.
                     ;; 'mode-line-misc-info
                     ;; 'system-name ;; hostname
