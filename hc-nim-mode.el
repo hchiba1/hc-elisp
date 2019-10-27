@@ -1,9 +1,14 @@
 (add-hook 'nim-mode-hook
-      (lambda()
-	(local-set-key [?\M-\;] 'nim-mode-shortcuts)
-	(local-set-key [\C-\return] '(lambda() (interactive) (insert ":")(forward-line)(open-line-and-insert "")))
-	(if (= 0 (buffer-size)) (insert-nim-template))
-	))
+          (lambda()
+            (local-set-key [?\M-\;] 'nim-mode-shortcuts)
+            (local-set-key [\C-\return] '(lambda() (interactive) (insert ":")(forward-line)(open-line-and-insert "")))
+            (if (= 0 (buffer-size)) (insert-nim-template))
+            ))
+
+;; (add-hook 'nim-mode-hook 'nimsuggest-mode)
+;; (setq nimsuggest-path "/usr/bin/nimsuggest")
+;; (add-hook 'nimsuggest-mode-hook 'company-mode)  ; auto complete package
+;; (add-hook 'nimsuggest-mode-hook 'flycheck-mode) ; auto linter package
 
 (defun insert-nim-template ()
   "Insert Nim template."
