@@ -93,11 +93,11 @@
 
 
 ;;; minibuffer ;;;
-                                        ;resize minibuffer to appropreate size
-                                        ;(resize-minibuffer-mode 1)
-                                        ;turn off keybind hints
+;; resize minibuffer to appropreate size
+;; (resize-minibuffer-mode 1)
+;; turn off keybind hints
 (setq suggest-key-bindings nil)
-                                        ;open window such as *HELP* in appropreate size
+;; open window such as *HELP* in appropreate size
 (temp-buffer-resize-mode 1)
 
 
@@ -134,7 +134,7 @@
 ;; (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
 ;; (ad-activate 'font-lock-mode)
 
-                                        ;high-lighten yanked strings
+;; high-lighten yanked strings
 ;; (when (or window-system (eq emacs-major-version '21))
 ;;   (defadvice yank (after ys:highlight-string activate)
 ;;     (let ((ol (make-overlay (mark t) (point))))
