@@ -54,8 +54,9 @@
                     "  "
                     'mode-line-modes ; major and minor modes in effect
                     `(vc-mode vc-mode) ; if vc-mode is in effect, display version control info here
-                    "  %l:%c"
-                    "  "
+                    ;; "  %l:%c"
+                    ;; "  "
+                    "  %l(%c) /"
                     '(:eval (format "%d" (count-lines (point-max) (point-min)))) ;; TOTAL LINES
                     " lines"
                     ;; "  (%P)"
