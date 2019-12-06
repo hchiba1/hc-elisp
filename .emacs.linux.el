@@ -6,6 +6,8 @@
 	       '(background-color . "#25324c")
 	       '(cursor-color . "cornflower blue")
 	       ;; '(font . "fontset-standard")
+	       '(font . "Monospace")
+	       ;; '(font . "Noto mono")
 	       '(line-spacing . 2)
 	       ;; '(width . 125)
 	       ;; '(height . 46)
