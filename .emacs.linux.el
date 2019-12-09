@@ -63,9 +63,9 @@
 ;; (add-menu-button '("File") ["a2ps-print" a2ps-buffer "--"]) ;on file menu
 ;; 		Someday I'll get menu to show PrtScr instead of f22...
 
-(defun toggle-fullscreen ()
-  (interactive)
-  (set-frame-parameter nil 'fullscreen (if (frame-parameter nil 'fullscreen)
-					   nil
-					 'fullboth)))
-(global-set-key [(meta return)] 'toggle-fullscreen)
+;; (defun toggle-fullscreen ()
+;;   (interactive)
+;;   (set-frame-parameter nil 'fullscreen (if (frame-parameter nil 'fullscreen)
+;; 					   nil
+;; 					 'fullboth)))
+;; (global-set-key [(meta return)] 'toggle-fullscreen)
