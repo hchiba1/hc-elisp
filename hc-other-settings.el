@@ -46,8 +46,8 @@
 (require 'dabbrev-highlight)
 ;; (require 'dabbrev-ja nil t)
 
-(setq visible-bell t)
-
+;; (setq visible-bell t)
+(setq ring-bell-function 'ignore)
 
 ;; PukiWiki
 (setq pukiwiki-auto-insert t)
