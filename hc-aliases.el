@@ -56,3 +56,5 @@
 (setq make-backup-files nil)
 
 (defun b() "Save as bookmark" (interactive) (bookmark-set))
+
+(defun t() "Toggle truncate lines" (interactive) (toggle-truncate-lines))
