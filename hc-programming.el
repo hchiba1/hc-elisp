@@ -207,9 +207,24 @@ and source-file directory for your debugger." t)
 (add-to-list 'auto-mode-alist '("\\.spl$" . prolog-mode))
 (setq auto-mode-alist
       (cons (cons "\\.isql$" 'shell-script-mode) auto-mode-alist))
+(add-hook 'sparqling-mode-hook
+          '(lambda ()
+             (setq sh-basic-offset 2)
+             (setq sh-indentation 2)
+           ))
 ;; js2-mode
+(add-to-list 'auto-mode-alist '("\\.pegjs$" . js-mode))
+(add-hook 'js-mode-hook
+          '(lambda ()
+            (make-local-variable 'js-indent-level)
+            (setq js-indent-level 2)
+           ))
 (autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-hook 'js2-mode-hook
+          '(lambda ()
+            (setq js2-basic-offset 2)
+            (setq js-switch-indent-offset 2)
+           ))
 ;; n3-mode
 (autoload 'n3-mode "n3-mode" "Major mode for OWL or N3 files" t)
 (setq auto-mode-alist
