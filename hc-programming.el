@@ -220,6 +220,7 @@ and source-file directory for your debugger." t)
             (setq js-indent-level 2)
            ))
 (autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.pegjs$" . js2-mode))
 (add-hook 'js2-mode-hook
           '(lambda ()
             (setq js2-basic-offset 2)
