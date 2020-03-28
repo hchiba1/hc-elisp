@@ -209,6 +209,8 @@ and source-file directory for your debugger." t)
       (cons (cons "\\.isql$" 'shell-script-mode) auto-mode-alist))
 (add-hook 'sparqling-mode-hook
           '(lambda ()
+             (make-local-variable 'sh-basic-offset)
+             (make-local-variable 'sh-indentation)
              (setq sh-basic-offset 2)
              (setq sh-indentation 2)
            ))
