@@ -33,6 +33,7 @@
 (load "hc-ruby-mode")
 (load "hc-go-mode")
 (load "hc-nim-mode")
+(load "hc-js-mode")
 (load "hc-ess-mode")
 (load "hc-html-mode")
 (load "hc-yatex-mode")
