@@ -1,9 +1,9 @@
-                                        ;hc-perl-mode.el
-                                        ;start by M-;
+;hc-perl-mode.el
+;start by M-;
+
 (add-hook 'perl-mode-hook
           '(lambda()
              ;; 	 (cperl-mode)
-
              (local-set-key [?\M-\;] 'perl-mode-accel)
              (local-set-key "\C-x\C-h" 'perl-mark-this-function)
              (local-set-key "\C-\M-h" 'backward-kill-sexp)
