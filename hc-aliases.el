@@ -57,4 +57,4 @@
 
 (defun b() "Save as bookmark" (interactive) (bookmark-set))
 
-(defun t() "Toggle truncate lines" (interactive) (toggle-truncate-lines))
+(defun tr() "Toggle truncate lines" (interactive) (toggle-truncate-lines))
