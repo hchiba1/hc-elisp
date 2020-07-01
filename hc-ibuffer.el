@@ -7,7 +7,7 @@
   (right-side-window 30))
 (defadvice ibuffer
   (after hoge activate)
-  (beginning-of-buffer)
+  (goto-char (point-min))
   (ibuffer-forward-line)
 ;;   (Buffer-menu-grep-v "Dired by")
   (isearch-resume "^\\s-+..\\s-+[^< ]*" t nil t "^ .. [^< ]*" t)
