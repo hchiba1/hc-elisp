@@ -213,6 +213,7 @@ and source-file directory for your debugger." t)
              (make-local-variable 'sh-indentation)
              (setq sh-basic-offset 2)
              (setq sh-indentation 2)
+             (local-set-key [?\C->] 'indent-region-by-one-char)
            ))
 ;; js2-mode
 (add-to-list 'auto-mode-alist '("\\.pegjs$" . js-mode))
@@ -223,6 +224,8 @@ and source-file directory for your debugger." t)
             (setq js2-basic-offset 2)
             (setq js-switch-indent-offset 2)
            ))
+;; (require 'typescript-mode)
+;; (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 ;; n3-mode
 (autoload 'n3-mode "n3-mode" "Major mode for OWL or N3 files" t)
 (setq auto-mode-alist
@@ -411,3 +414,16 @@ With argument ARG, do this that many times."
 With argument ARG, do this that many times."
   (interactive "p")
   (delete-word (- arg)))
+
+(defun indent-region-by-one-char (start end)
+  "indent region by one char"
+  (interactive "r")
+  (save-excursion
+    (let (c)
+      (setq c ?\C->)
+      (while (or (equal c ?\C->)(equal c ?\C-<))
+	(if (equal c ?\C->)
+	    (indent-rigidly start end 1)
+	  (indent-rigidly start end -1))
+	(setq c (read-char)))
+      )))
