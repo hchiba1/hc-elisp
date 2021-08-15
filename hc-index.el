@@ -11,6 +11,8 @@
 	       "~/etc/lisp"
 	       "~/etc/lisp/lookup"
 	       "~/etc/lisp/ess-5.2.2/lisp"
+	       "~/github/hchiba1/sparql-mode"
+	       "~/github/sparqling/sparqling-mode"
 	       )))
 (setq Info-directory-list
       '(
