@@ -15,6 +15,7 @@
 (fset 'i 'info)
 (fset 'n 'linum-mode)
 (fset 'u 'untabify)
+(fset 'd 'dockerfile-mode)
 
 ;;; For w3m
 (fset 'w [C-return ?w ?3 ?m return])
@@ -30,7 +31,7 @@
 
 ;;; For lookup
 (fset 'l 'lookup-entry-select-dictionary)
-(fset 'd 'lookup)
+;; (fset 'd 'lookup)
 (fset 'res 'lookup-restart)
 
 
