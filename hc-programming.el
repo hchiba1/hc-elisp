@@ -238,6 +238,9 @@ and source-file directory for your debugger." t)
 	)
        auto-mode-alist))
 
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+
 ;yatex-mode
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 (setq auto-mode-alist
