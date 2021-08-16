@@ -7,7 +7,8 @@
 	     (local-set-key "\C-\M-n" 'scroll-up-line)
 	     (local-set-key "\C-\M-p" 'scroll-down-line)
 	     (local-set-key "\C-\M-x" '(lambda()(interactive) (save-buffer) (shell-command (buffer-file-name))))
-	     (local-set-key "\C-m" 'ruby-reindent-then-newline-and-indent)
+	     ;; (local-set-key "\C-m" 'ruby-reindent-then-newline-and-indent)
+             (setq ruby-indent-level 2)
 	     ))
 
 (defun insert-statement (arg)
