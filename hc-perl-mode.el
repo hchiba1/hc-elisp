@@ -219,6 +219,7 @@
      ((equal c ?l)
       (open-line-and-insert "!@ARGV && -t and die $USAGE;") (forward-line)
       (open-line-and-insert "while (<>) {") (forward-line)
+      (open-line-and-insert "chomp;") (forward-line)
       (open-line-and-insert "") (forward-line)
       (open-line-and-insert "}") (forward-line -1) (back-to-indentation)
       )
@@ -330,8 +331,15 @@
      ;;  )
 
      ;; (o)ccur sub
+     ;; ((equal c ?o)
+     ;;  (occur-sub)
+     ;;  )
+
+     ;; (o)pen
      ((equal c ?o)
-      (occur-sub)
+      (open-line-and-insert "open(, \"\") || die \"$!\";") (forward-line)
+      (open-line-and-insert "close();")
+      (forward-line -1)(end-of-line)(backward-char 18)
       )
 
      )))
