@@ -219,7 +219,7 @@ and source-file directory for your debugger." t)
 (add-to-list 'auto-mode-alist '("\\.pegjs$" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
 (autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.pegjs$" . js2-mode))
+;; (add-to-list 'auto-mode-alist '("\\.pegjs$" . js2-mode))
 (add-hook 'js2-mode-hook
           '(lambda ()
             (setq js2-basic-offset 2)
@@ -433,3 +433,5 @@ With argument ARG, do this that many times."
 	  (indent-rigidly start end -1))
 	(setq c (read-char)))
       )))
+
+;; (setq markdown-fontify-code-blocks-natively t)
