@@ -193,6 +193,7 @@
     )
   (next-line 1)
   (beginning-of-line)
+  ;;       (newline)
   )
 
 (defun perl-mode-accel ()
@@ -203,26 +204,7 @@
     (cond
      ;; (c)omment
      ((equal c ?c)
-      (setq i 0)
-      (while (< i 80)
-        (insert "#")
-        (setq i (+ i 1))
-        )
-      (newline)
-      (insert "### ") (end-of-line)
-      (insert " ")
-      (while (< (current-column) 80)
-        (insert "#")
-        )
-      (newline)
-      (setq i 0)
-      (while (< i 80)
-        (insert "#")
-        (setq i (+ i 1))
-        )
-      (next-line 1)
-      (beginning-of-line)
-      ;;       (newline)
+      (make-comment-bar)
       )
 
      ;; (s)hebang
