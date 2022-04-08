@@ -171,6 +171,30 @@
   (open-line-and-insert "") (forward-line)
   )
 
+(defun make-comment-bar ()
+  "Make comment bar."
+  (interactive)
+  (setq i 0)
+  (while (< i 80)
+    (insert "#")
+    (setq i (+ i 1))
+    )
+  (newline)
+  (insert "### ") (end-of-line)
+  (insert " ")
+  (while (< (current-column) 80)
+    (insert "#")
+    )
+  (newline)
+  (setq i 0)
+  (while (< i 80)
+    (insert "#")
+    (setq i (+ i 1))
+    )
+  (next-line 1)
+  (beginning-of-line)
+  )
+
 (defun perl-mode-accel ()
   "Insert perl statemnts quickly by abbreviations."
   (interactive)
@@ -217,9 +241,19 @@
 
      ;; (l)oop for filter program
      ((equal c ?l)
+      (open-line-and-insert "while (<>) {") (forward-line)
+      (open-line-and-insert "chomp;") (forward-line)
+      (open-line-and-insert "my @f = split(/\\t/, $_);") (forward-line)
+      (open-line-and-insert "") (forward-line)
+      (open-line-and-insert "}") (forward-line -3) (backward-char 5)
+      )
+
+     ;; (L)oop for filter program
+     ((equal c ?L)
       (open-line-and-insert "!@ARGV && -t and die $USAGE;") (forward-line)
       (open-line-and-insert "while (<>) {") (forward-line)
       (open-line-and-insert "chomp;") (forward-line)
+      (open-line-and-insert "my @f = split(/\\t/, $_);") (forward-line)
       (open-line-and-insert "") (forward-line)
       (open-line-and-insert "}") (forward-line -1) (back-to-indentation)
       )
@@ -342,6 +376,11 @@
       (forward-line -1)(end-of-line)(backward-char 18)
       )
 
+     ;; (#)Functions
+     ((equal c ?#)
+      (open-line-and-insert "Function")(beginning-of-line)
+      (make-comment-bar)
+      )
      )))
 
 ;; perl-mode useful functions
