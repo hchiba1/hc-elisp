@@ -214,6 +214,7 @@ and source-file directory for your debugger." t)
              (setq sh-basic-offset 2)
              (setq sh-indentation 2)
              (local-set-key [?\C->] 'indent-region-by-one-char)
+             (if (= 0 (buffer-size)) (insert-sparqling-template))
            ))
 ;; js2-mode
 (add-to-list 'auto-mode-alist '("\\.pegjs$" . js-mode))
