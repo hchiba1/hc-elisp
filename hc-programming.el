@@ -170,7 +170,7 @@
 (autoload 'run-ruby "inf-ruby" "Run an inferior Ruby process")
 (autoload 'inf-ruby-keys "inf-ruby" "set local key defs for inf-ruby in ruby-mode")
 (setq auto-mode-alist
-      (cons (cons "\\.rb$" 'ruby-mode) auto-mode-alist))
+      (cons '("\\.rb$" . ruby-mode) auto-mode-alist))
 (setq interpreter-mode-alist
       (append
        '(("ruby" . ruby-mode))
@@ -202,8 +202,6 @@ and source-file directory for your debugger." t)
 (autoload 'sparql-mode "sparql-mode" "Mode for editing SPARQL files" t)
 (autoload 'sparqling-mode "sparqling-mode" "Major mode for SPARQL" t)
 (add-to-list 'auto-mode-alist '("\\.rq$" . sparqling-mode))
-;; (setq auto-mode-alist
-;;       (cons (cons "\\.rq$" 'sparqling-mode) auto-mode-alist))
 (add-to-list 'auto-mode-alist '("\\.spl$" . prolog-mode))
 (setq auto-mode-alist
       (cons (cons "\\.isql$" 'shell-script-mode) auto-mode-alist))
