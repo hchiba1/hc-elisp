@@ -6,19 +6,19 @@
 
 (setq load-path
       (append load-path
-	      (list
-	       "~/etc/hc-elisp"
-	       "~/etc/sparqling-mode"
-	       "~/etc/lisp"
-	       "~/etc/lisp/lookup"
-	       "~/etc/lisp/ess-5.2.2/lisp"
-	       "~/github/hchiba1/sparql-mode"
-	       )))
+	      '(
+                "~/etc/hc-elisp"
+                "~/etc/sparqling-mode"
+                "~/etc/lisp"
+                "~/etc/lisp/lookup"
+                "~/etc/lisp/ess-5.2.2/lisp"
+                "~/github/hchiba1/sparql-mode"
+                )))
 (setq Info-directory-list
       '(
-	"~/etc/lisp/info"
+        "~/etc/lisp/info"
 	"/usr/share/info"
-	))
+        ))
 
 ;; Basic settings
 (load "hc-faces" )
