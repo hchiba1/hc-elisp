@@ -199,7 +199,7 @@
 (defun perl-mode-accel ()
   "Insert perl statemnts quickly by abbreviations."
   (interactive)
-  (message "(s)hebang, (a)rgs, (l)oop for filter program, (i)f, (w)hile, (f)or, (p)ototype declarations, (e)xport functions, (o)ccur sub")
+  (message "(#)shebang, (A)rgs, (a)utoflush, (o)pen, (p)rint, (l)oop, (i)f, (w)hile, (f)or, (F)unctions, (s)ub")
   (let ((c (read-char)))
     (cond
      ;; (c)omment
@@ -207,13 +207,13 @@
       (make-comment-bar)
       )
 
-     ;; (s)hebang
-     ((equal c ?s)
+     ;; (#)shebang
+     ((equal c ?#)
       (insert-perl-template)
       )
 
-     ;; (a)rgs
-     ((equal c ?a)
+     ;; (A)rgs
+     ((equal c ?A)
       (open-line-and-insert "if (!@ARGV) {") (forward-line)
       (open-line-and-insert "print STDERR $USAGE;") (forward-line)
       (open-line-and-insert "exit 1;") (forward-line)
@@ -221,13 +221,18 @@
       (open-line-and-insert "my ($) = @ARGV;") (backward-char 10)
       )
 
-     ;; (l)oop for filter program
+     ;; (a)utoflush
+     ((equal c ?a)
+      (open-line-and-insert "STDOUT->autoflush;") (forward-line)
+      )
+
+     ;; (l)oop
      ((equal c ?l)
       (open-line-and-insert "while (<>) {") (forward-line)
       (open-line-and-insert "chomp;") (forward-line)
       (open-line-and-insert "my @f = split(/\\t/, $_);") (forward-line)
       (open-line-and-insert "") (forward-line)
-      (open-line-and-insert "}") (forward-line -3) (backward-char 5)
+      (open-line-and-insert "}") (forward-line -1) (back-to-indentation)
       )
 
      ;; (L)oop for filter program
@@ -324,8 +329,8 @@
           ))
       )
 
-     ;; (F)untion
-     ((equal c ?F)
+     ;; (s)ub
+     ((equal c ?s)
       (perl-insert-function)
       )
      
@@ -358,8 +363,8 @@
       (forward-line -1)(end-of-line)(backward-char 18)
       )
 
-     ;; (#)Functions
-     ((equal c ?#)
+     ;; (F)unctions
+     ((equal c ?F)
       (open-line-and-insert "Function")(beginning-of-line)
       (make-comment-bar)
       )
