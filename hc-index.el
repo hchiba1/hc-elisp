@@ -10,7 +10,7 @@
                 "~/etc/hc-elisp"
                 "~/etc/sparqling-mode"
                 "~/etc/lisp"
-                "~/etc/lisp/lookup"
+                ;; "~/etc/lisp/lookup"
                 "~/etc/lisp/ess-5.2.2/lisp"
                 "~/github/hchiba1/sparql-mode"
                 )))
@@ -41,7 +41,7 @@
 (load "hc-yatex-mode")
 (load "hc-help")
 (load "hc-ibuffer")
-(load "hc-lookup")
+;; (load "hc-lookup")
 (load "hc-w3m")
 (load "my-dired-mode")
 

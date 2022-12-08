@@ -30,9 +30,9 @@
 (fset 'f 'w3m-find-file)
 
 ;;; For lookup
-(fset 'l 'lookup-entry-select-dictionary)
+;; (fset 'l 'lookup-entry-select-dictionary)
 ;; (fset 'd 'lookup)
-(fset 'res 'lookup-restart)
+;; (fset 'res 'lookup-restart)
 
 
 ;;; Other aliases
