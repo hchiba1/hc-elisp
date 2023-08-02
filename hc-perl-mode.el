@@ -212,8 +212,8 @@
       (insert-perl-template)
       )
 
-     ;; (A)rgs
-     ((equal c ?A)
+     ;; (a)rgs
+     ((equal c ?a)
       (open-line-and-insert "if (!@ARGV) {") (forward-line)
       (open-line-and-insert "print STDERR $USAGE;") (forward-line)
       (open-line-and-insert "exit 1;") (forward-line)
@@ -221,8 +221,8 @@
       (open-line-and-insert "my ($) = @ARGV;") (backward-char 10)
       )
 
-     ;; (a)utoflush
-     ((equal c ?a)
+     ;; (A)utoflush
+     ((equal c ?A)
       (open-line-and-insert "STDOUT->autoflush;") (forward-line)
       )
 
@@ -230,7 +230,7 @@
      ((equal c ?l)
       (open-line-and-insert "while (<>) {") (forward-line)
       (open-line-and-insert "chomp;") (forward-line)
-      (open-line-and-insert "my @f = split(/\\t/, $_);") (forward-line)
+      (open-line-and-insert "my @f = split(/\\t/, $_, -1);") (forward-line)
       (open-line-and-insert "") (forward-line)
       (open-line-and-insert "}") (forward-line -1) (back-to-indentation)
       )
@@ -240,7 +240,7 @@
       (open-line-and-insert "!@ARGV && -t and die $USAGE;") (forward-line)
       (open-line-and-insert "while (<>) {") (forward-line)
       (open-line-and-insert "chomp;") (forward-line)
-      (open-line-and-insert "my @f = split(/\\t/, $_);") (forward-line)
+      (open-line-and-insert "my @f = split(/\\t/, $_, -1);") (forward-line)
       (open-line-and-insert "") (forward-line)
       (open-line-and-insert "}") (forward-line -1) (back-to-indentation)
       )
