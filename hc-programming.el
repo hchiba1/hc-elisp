@@ -435,3 +435,10 @@ With argument ARG, do this that many times."
       )))
 
 ;; (setq markdown-fontify-code-blocks-natively t)
+
+;; GitHub Copilot
+(when (>= emacs-major-version 27)
+  (require 'copilot)
+  (add-hook 'prog-mode-hook 'copilot-mode)
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
