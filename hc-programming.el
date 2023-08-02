@@ -217,6 +217,7 @@ and source-file directory for your debugger." t)
 ;; js2-mode
 (add-to-list 'auto-mode-alist '("\\.pegjs$" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
+(add-to-list 'auto-mode-alist '("\\.jsonld$" . js-mode))
 (autoload 'js2-mode "js2-mode" nil t)
 ;; (add-to-list 'auto-mode-alist '("\\.pegjs$" . js2-mode))
 (add-hook 'js2-mode-hook
