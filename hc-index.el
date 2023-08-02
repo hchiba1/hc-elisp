@@ -32,6 +32,7 @@
 (load "hc-c-mode")
 (load "hc-lisp-mode")
 (load "hc-perl-mode")
+(load "hc-python-mode")
 (load "hc-ruby-mode")
 (load "hc-go-mode")
 (load "hc-nim-mode")
