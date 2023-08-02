@@ -16,6 +16,7 @@
 (fset 'n 'linum-mode)
 (fset 'u 'untabify)
 (fset 'd 'dockerfile-mode)
+(fset 'co 'copilot-mode)
 
 ;;; For w3m
 (fset 'w [C-return ?w ?3 ?m return])
