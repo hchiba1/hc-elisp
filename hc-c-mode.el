@@ -78,6 +78,9 @@
   (message "(I/i)f, (W/w)hile, (D/d)o while, (F/f)or, (p)rintf, (e)rr, (s)tdio, (m)ain, p(r)ototype declarations")
   (let ((c (read-char)))
     (cond
+     ((equal c ?#)
+      (c-insert-statement "#!/usr/bin/env runc")
+      )
      ((equal c ?m)
       (c-insert-statement "#include <stdio.h>")
       (c-insert-statement "")
