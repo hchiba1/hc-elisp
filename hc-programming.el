@@ -198,6 +198,18 @@ and source-file directory for your debugger." t)
 (setq scheme-program-name "/usr/local/bin/gosh -i")
 (autoload 'run-scheme "cmuscheme" "Run an inferior Scheme process. " t)
 
+;; gsql-mode
+(autoload 'gsql-mode "gsql-mode" "Major mode for GSQL" t)
+(add-to-list 'auto-mode-alist '("\\.gsql$" . gsql-mode))
+(add-hook 'gsql-mode-hook
+          '(lambda ()
+             (make-local-variable 'sh-basic-offset)
+             (make-local-variable 'sh-indentation)
+             (setq sh-basic-offset 2)
+             (setq sh-indentation 2)
+             (local-set-key [?\C->] 'indent-region-by-one-char)
+           ))
+
 ;; for SPARQL source code
 (autoload 'sparql-mode "sparql-mode" "Mode for editing SPARQL files" t)
 (autoload 'sparqling-mode "sparqling-mode" "Major mode for SPARQL" t)
