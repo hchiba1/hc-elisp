@@ -13,7 +13,7 @@
                 ;; "~/etc/lisp/lookup"
                 "~/etc/lisp/ess-5.2.2/lisp"
                 "~/github/hchiba1/sparql-mode"
-                "~/github/zerolfx/copilot.el"
+                "~/etc/lisp/copilot"
                 )))
 (setq Info-directory-list
       '(
