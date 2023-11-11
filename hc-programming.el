@@ -256,6 +256,9 @@ and source-file directory for your debugger." t)
 
 (add-to-list 'auto-mode-alist '("\\.hbs\\'" . html-mode))
 
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+
 ;yatex-mode
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 (setq auto-mode-alist
