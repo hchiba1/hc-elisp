@@ -1,9 +1,8 @@
 ;text-mode for default
 (setq default-major-mode 'text-mode)
-;turn on auto-fill when starting text-mode
 (add-hook 'text-mode-hook
           '(lambda ()
-	     (auto-fill-mode 1)
+	     (auto-fill-mode 0)
 	     (local-set-key [?\C->] 'indent-region-by-one-char)
 	     (local-set-key [?\M-\;] 'search-tag)
 	     ))
