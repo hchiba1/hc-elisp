@@ -82,7 +82,7 @@
 
 (setq quail-japanese-use-double-n t)
 
-(global-set-key [?\C-+] 'toggle-input-method)
+(global-set-key [?\S- ] 'toggle-input-method)
 ;; (global-set-key [?\C-<] 'backward-sexp)
 ;; (global-set-key [?\C->] 'forward-sexp)
 ;; (global-set-key [?\C-+] 'forward-mark-word)

@@ -40,7 +40,6 @@
 ;;     (setq hc-ctrl-x-c-is-completion t)
 ;;     (require 'highlight-completion)
 ;;     (highlight-completion-mode 1)
-;;     (global-set-key "\C-\\" 'toggle-input-method)
 ;; )
 
 (require 'dabbrev-highlight)
@@ -175,12 +174,6 @@
 (global-set-key [?\M-\"] 'repeat)
 (global-set-key "\M-p" 'repeat-complex-command)
 
-
-;;Why isn't it work???
-;;when IME is ON, space" " does't seems to be recognized.
-;;So, cannot toggle the state. Just one way from OFF to ON.
-;; (global-set-key [?\S- ] 'mw32-ime-toggle)
-;; (global-set-key [?\S- ] 'toggle-input-method)
 
 ;browse-url
 (global-set-key [S-mouse-2] 'browse-url-at-mouse)
