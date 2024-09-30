@@ -28,6 +28,10 @@
 ;;  '(fringe ((t (:background "#333")))))
 
 (setq-default truncate-lines t)
+(add-hook 'find-file-hook
+          (lambda ()
+            (when (eq major-mode 'fundamental-mode)
+              (setq truncate-lines nil))))
 ;; (setq-default truncate-partial-width-windows t)
 
 ;;; Mode line ;;;
