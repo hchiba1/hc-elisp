@@ -80,6 +80,8 @@
       (message "region contains %d chars." (- count (- endline startline)))
       )))
 
+(setq quail-japanese-use-double-n t)
+
 (global-set-key [?\C-+] 'toggle-input-method)
 ;; (global-set-key [?\C-<] 'backward-sexp)
 ;; (global-set-key [?\C->] 'forward-sexp)
