@@ -8,7 +8,6 @@
       (append load-path
 	      '(
                 "~/etc/hc-elisp"
-                "~/etc/sparqling-mode"
                 "~/etc/lisp"
                 ;; "~/etc/lisp/lookup"
                 "~/etc/lisp/ess-5.2.2/lisp"
